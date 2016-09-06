@@ -1,0 +1,43 @@
+function help {
+  echo "usage : wdom <option>"
+  echo "options are :"
+  echo "  run : runs web server"
+  echo "  install <package_name> : installs python module"
+  echo "  uninstall <package_name> : uninstalls python module"
+  echo "  help : for usage info"
+}
+
+cd `dirname $0`
+
+if [ ! -e ./bin/activate ] || [ ! -e ./bin/pip3 ] || [ ! -e ./bin/python3 ] || [ ! -d ./lib/python3.5 ] || [ ! -d ./include/python3.5m ]; then
+  echo Enviroment setup is started
+
+  packResult=$(dpkg -s virtualenv | grep Status)
+
+  if [ "$packResult" != "Status: install ok installed" ]; then
+    sudo apt install virtualenv
+  fi
+
+  currentDir=$(pwd)
+  sudo virtualenv -p python3 --no-site-packages $currentDir
+
+  sudo ./bin/pip3 install -r requirements.txt
+
+  echo Enviroment setup is done
+  help
+else
+  echo Enviroment setup is already done
+  if [ "$1" == "run" ]; then
+    sudo ./bin/python3 app.py dev
+  elif [ "$1" == "install" ] && [ "$2" != "" ]; then
+    sudo ./bin/pip3 install $2
+    sudo ./bin/pip3 freeze > requirements.txt
+  elif [ "$1" == "uninstall" ] && [ "$2" != "" ]; then
+    sudo ./bin/pip3 uninstall $2
+    sudo ./bin/pip3 freeze > requirements.txt
+  elif [ "$1" == "help" ]; then
+    help
+  else
+    help
+  fi
+fi

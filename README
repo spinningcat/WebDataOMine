@@ -1,0 +1,16 @@
+Python gelistirme ortami virtual enviroment olarak olusturulmali. Bu sekilde globaldeki python paketlerinden projeyi soyutluyoruz.
+
+Ilk ortam kurulumu icin ./wdom bash dosyasina executable yetkisi verilmeli. Bunun icin
+
+cd <project_path>
+chmod 764 ./wdom
+
+komutlari calistirilir. Dosyaya executable yetkisi verildikten sonra komut satirina ./wdom yazarak ortam ilk kurulumu yapilir.
+
+Ortam kurulumu yapildiktan sonra wdom bash dosyasini bazi isler icin kullanilabilir
+
+./wdom run  komutuyla uygulama sunucusu calistirilabilir.
+
+./wdom install <package_name>  komutuyla projeye python paketi eklenebilir
+
+./wdom uninstall <package_name>  komutuyla projeden python paketi silinebilir
