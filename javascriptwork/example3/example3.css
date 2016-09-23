@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.div1 {
+  position: absolute;
+  background-color: blue;
+  width: 100px;
+  height: 50px;
+  top: 20px;
+  left: 20px;
+}
+
+.div2 {
+  position: relative;
+  background-color: blue;
+  width: 100px;
+  height: 50px;
+  top: 100px;
+  left: 20px;
+}
+
+.div3 {
+  position: fixed;
+  background-color: blue;
+  width: 100px;
+  height: 50px;
+  top: 175px;
+  left: 20px;
+}
+
